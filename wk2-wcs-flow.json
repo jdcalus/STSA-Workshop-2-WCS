@@ -1,0 +1,258 @@
+[
+    {
+        "id": "409a1f5a.7f033",
+        "type": "tab",
+        "label": "WCS Flow"
+    },
+    {
+        "id": "6be053b1.cbf5c4",
+        "type": "watson-conversation-v1",
+        "z": "409a1f5a.7f033",
+        "name": "STSA-CONV",
+        "workspaceid": "7bcaf7ff-2a7d-4a41-a58b-b4958275a943",
+        "multiuser": false,
+        "context": true,
+        "x": 684.5,
+        "y": 201,
+        "wires": [
+            [
+                "a4222da6.668e38"
+            ]
+        ]
+    },
+    {
+        "id": "1115834a.941be5",
+        "type": "http in",
+        "z": "409a1f5a.7f033",
+        "name": "conv-api",
+        "url": "/v1/workspaces/voiceproxy/message",
+        "method": "post",
+        "swaggerDoc": "",
+        "x": 230.5,
+        "y": 200,
+        "wires": [
+            [
+                "c4ab6490.df707"
+            ]
+        ]
+    },
+    {
+        "id": "e84ab0e3.297978",
+        "type": "http response",
+        "z": "409a1f5a.7f033",
+        "name": "",
+        "x": 1305.5,
+        "y": 555,
+        "wires": []
+    },
+    {
+        "id": "c4ab6490.df707",
+        "type": "function",
+        "z": "409a1f5a.7f033",
+        "name": "conv-format",
+        "func": "if(msg.payload.input){\n    if(msg.payload.input.text){\n        msg.payload = msg.payload.input.text;\n        \n    }else{\n        msg.payload = \"Hi\";\n    }\n}\nelse{\n    msg.payload = \"Hi\";\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450.5,
+        "y": 201,
+        "wires": [
+            [
+                "6be053b1.cbf5c4"
+            ]
+        ]
+    },
+    {
+        "id": "9d161fd1.5172f",
+        "type": "switch",
+        "z": "409a1f5a.7f033",
+        "name": "Conversation Actions",
+        "property": "convdata.output.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "CurrentTempCelsius",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "CurrentTempFahrenheit",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "changeColorRed",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "outputs": 4,
+        "x": 273.5,
+        "y": 423,
+        "wires": [
+            [
+                "898687c.4510bf8"
+            ],
+            [
+                "edef71d6.03ce2"
+            ],
+            [
+                "222e54e2.838d24",
+                "e84ab0e3.297978"
+            ],
+            [
+                "e84ab0e3.297978"
+            ]
+        ]
+    },
+    {
+        "id": "bd1c968f.65cbc8",
+        "type": "function",
+        "z": "409a1f5a.7f033",
+        "name": "CurrentTempCelsius",
+        "func": "txt = msg.convdata.output.text[0];\ntemp = msg.payload.TEMPERATURE;\nmsg.payload = msg.convdata;\nmsg.payload.output.text[0] =  txt + \" \" + temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 897.5,
+        "y": 341,
+        "wires": [
+            [
+                "e84ab0e3.297978"
+            ]
+        ]
+    },
+    {
+        "id": "c054b5af.a614d",
+        "type": "function",
+        "z": "409a1f5a.7f033",
+        "name": "CurrentTempFahrenheit",
+        "func": "txt = msg.convdata.output.text[0];\ntemp = msg.payload.TEMPERATURE;\ntempf = ((parseInt(temp, 10)*9)/5)+32;\nmsg.payload = msg.convdata;\nmsg.payload.output.text[0] =  txt + \" \" + tempf;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 910.5,
+        "y": 384,
+        "wires": [
+            [
+                "e84ab0e3.297978"
+            ]
+        ]
+    },
+    {
+        "id": "898687c.4510bf8",
+        "type": "dashDB in",
+        "z": "409a1f5a.7f033",
+        "dashDB": "d62eb89e.14e69",
+        "service": "_ext_",
+        "query": "SELECT temperature, timesent FROM sensedata order by timesent desc fetch first 1 row only;",
+        "params": "",
+        "name": "Current Temp",
+        "x": 650.5,
+        "y": 340,
+        "wires": [
+            [
+                "bd1c968f.65cbc8"
+            ]
+        ]
+    },
+    {
+        "id": "a4222da6.668e38",
+        "type": "function",
+        "z": "409a1f5a.7f033",
+        "name": "after_WCS",
+        "func": "conv_data = {};\nconv_data = msg.payload;\nmsg.convdata = conv_data;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 894.5,
+        "y": 201,
+        "wires": [
+            [
+                "9d161fd1.5172f"
+            ]
+        ]
+    },
+    {
+        "id": "edef71d6.03ce2",
+        "type": "dashDB in",
+        "z": "409a1f5a.7f033",
+        "dashDB": "d62eb89e.14e69",
+        "service": "_ext_",
+        "query": "SELECT temperature, timesent FROM sensedata order by timesent desc fetch first 1 row only;",
+        "params": "",
+        "name": "Current Temp",
+        "x": 650.5,
+        "y": 385,
+        "wires": [
+            [
+                "c054b5af.a614d"
+            ]
+        ]
+    },
+    {
+        "id": "222e54e2.838d24",
+        "type": "function",
+        "z": "409a1f5a.7f033",
+        "name": "ChangeIoTColor",
+        "func": "if(msg.payload.entities){\n    color = msg.payload.entities[0].value;\n}else{\n    color = msg.payload;\n}\n\nmsg.payload={d:{color:'blue',background: color ,message:' '}}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 650.5,
+        "y": 431.75,
+        "wires": [
+            [
+                "47b014a3.8af9ec"
+            ]
+        ]
+    },
+    {
+        "id": "47b014a3.8af9ec",
+        "type": "ibmiot out",
+        "z": "409a1f5a.7f033",
+        "authentication": "apiKey",
+        "apiKey": "1ed9ef64.505b61",
+        "outputType": "cmd",
+        "deviceId": "SenseHat-01",
+        "deviceType": "SenseHat",
+        "eventCommandType": "message",
+        "format": "json",
+        "data": "data",
+        "qos": 0,
+        "name": "IOT : ColorChange",
+        "service": "registered",
+        "x": 896,
+        "y": 433,
+        "wires": []
+    },
+    {
+        "id": "462bec0f.bc7f94",
+        "type": "comment",
+        "z": "409a1f5a.7f033",
+        "name": "API endpoint for WCS",
+        "info": "",
+        "x": 268.5,
+        "y": 107.75,
+        "wires": []
+    },
+    {
+        "id": "d62eb89e.14e69",
+        "type": "dashDB",
+        "z": "",
+        "hostname": "dashdb-entry-yp-dal09-08.services.dal.bluemix.net",
+        "db": "BLUDB",
+        "port": "50000",
+        "name": "DashDB-STSA"
+    },
+    {
+        "id": "1ed9ef64.505b61",
+        "type": "ibmiot",
+        "z": "",
+        "name": "TinyPi",
+        "keepalive": "60",
+        "domain": "",
+        "cleansession": true,
+        "appId": "",
+        "shared": false
+    }
+]
