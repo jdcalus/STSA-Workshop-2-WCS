@@ -161,6 +161,23 @@ You have now completed the first step in creating the WCS service instance.
 		13. Next we want to select the green pencil on the "Temperature" node. Like with the "Information" node, select the "Wait for user input" button and click **Jump to**.
 		Then select the **"WhatElse"** node. This time select the "Go to response" option. The sub-flow should now look like the following:
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-temperature-jump.png)
+		13. Next we want to select the green pencil on the "Temperature" node. Like with the "Information" node, select the "Wait for user input" button and click **Jump to**.
+		Then select the **"WhatElse"** node. This time select the "Go to response" option. The sub-flow should now look like the following:
+		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-temperature-jump.png)
+		14. Click the three bubbles in the upper right on the Temperature node by the responses
+		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json.png)
+		Then click on the **JSON** menu item.
+		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json-pulldown.png)
+			1. We are going to add a single line of code to the JSON. The purpose of this code, is to send a signal to the NodeRed application that some special processing needs to occur.
+			So for the response to the **degree:Celsius** entity needs to have a new attribute on the JSON object. Type **"action": "CurrentTempCelsius"** make sure you put the "semicolon" right after the curly bracket, but before the new code you just added.
+			![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json-celsius.png)
+			2. You now need to do the same thing for the each of the other responses on the temperature node. 
+			For the **degree:Fahrenheit** response add **"action": "CurrentTempFahrenheit"**
+			![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json-fahrenheit.png)
+			3. Now do it for the **True** condition as well. We will have the default response be in fahrenheit so add **"action": "CurrentTempFahrenheit"** 
+			![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json-default.png)
+		15. The last step is to update the **ChangeColor** dialog node, with a similar action command. but this time set the command value to **"action":"changeColor"**
+		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-changecolor-json.png)
 		We are now finished with the entire Dialog. Congratulations. We will be coming back here to make a couple of minor updates. Now is time to test your code.
 	9. Deploy the NodeRed Flow . What might become obvious is that the responses from WCS are static. There is nothing personalized in the responses.
 	Because of this we need to add a layer in front of WCS to take the responses and make them personalized. We are going to use NodeRed, like we did for the IoT lab.
@@ -208,6 +225,8 @@ You have now completed the first step in creating the WCS service instance.
 			Provide the **Username, password and Workspace** values from above.
 			Click **Done** when completed.
 			You are done updating the NodeRed Flows for WCS
+			Click the **DEPLOY** button at the top of the screen.
+			
 		10. The next step is to create a sample application that connects to your NodeRed flow. When you click on the button below, you will be taken to bluemix DevOps page. This will automatically create a new application for you, via the DevOps ToolChain. If you are not logged on to BlueMix you will need to logon.
 		[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/jdcalus/STSA-WCS-WebProxy.git)
 		
@@ -225,9 +244,9 @@ You have now completed the first step in creating the WCS service instance.
 		![Iot Flow](/images/wk2-bluemix-wcs-webclient.png)
 		Click on the **Runtime** link on the left and your screen should change, then click on environment tab in the middle of the screen. It should look like the following:
 		![Iot Flow](/images/wk2-bluemix-wcs-webclient-runtime.png)
-		In the **CONVERSATION_URL** value change the "xxxxxx" to the hostname of your **NodeRed** application. So something like "STSAWrokshops-xx.mybluemix.net"		
+		In the **CONVERSATION_URL** value change the "xxxxxx" to the hostname of your **NodeRed** application. This comes from the NodeRed url that where you are creating your NodeRed flow. So something like "STSAWorkshops-xx.mybluemix.net", do not include "/red/#	
 		Click the **Save** button. The application will restart.
-		Click on the **Visit App URL**. You will get an error message. That is okay. You need to add **webclient** to the end of the browsers URL.
+		Click on the **Visit App URL**. This is at the top of the page. You will get an error message. That is okay. You need to add **webclient** to the end of the browsers URL.
 		![Iot Flow](/images/wk2-bluemix-wcs-webclient-url.png)
 		Your screen should now look like the following:
 		![Iot Flow](/images/wk2-bluemix-wcs-webclient-webpage.png)
