@@ -276,7 +276,7 @@ You have now completed the first step in creating the WCS service instance.
 		Then click on the **Open JSON Editor** menu item.
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json-pulldown.png)
 			1. We are going to add a single line of code to the JSON. The purpose of this code, is to send a signal to the NodeRed application that some special processing needs to occur.
-			So for the JSON response to the **degree:Celsius** entity we need to have a new attribute on the JSON object. Type **"action": "CurrentTempCelsius"** make sure you put the "semicolon" right after the curly bracket, but before the new code you just added.
+			So for the JSON response to the **degree:Celsius** entity we need to have a new attribute on the JSON object. Type **"action": "CurrentTempCelsius"** make sure you put the "comma" right after the curly bracket, but before the new code you just added.
 			![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json-celsius.png)
 			2. You now need to do the same thing for the each of the other responses on the temperature node. 
 			For the **degree:Fahrenheit** response add **"action": "CurrentTempFahrenheit"**
@@ -316,7 +316,8 @@ You have now completed the first step in creating the WCS service instance.
 			![Iot Flow](/images/wk2-bluemix-dashdb-credentials.png)
 			2. Now go back to NodeRed and make sure you are in the WCS flow.
 			Click on the Current Temp node. This is a DashDB node, so we need to make sure the setting are configured properly. You should see something like:
-			![Iot Flow](/images/wk2-nodered-flow-wcs-dashdb-config.png)
+			![Iot Flow](/images/wk2-nodered-flow-wcs-dashdb-config.png)   
+			If you see the "Server" information from the IoT lab. Select it. If you don't see an option for the "Server" information from the IoT Lab, you will need to add the information.
 			Click on the pencil icon to set up the connection information. You should see something like
 			![Iot Flow](/images/wk2-nodered-flow-wcs-dashdb-blank-security.png)
 			Once you fill in the values it should look similar to:
