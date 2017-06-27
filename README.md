@@ -71,74 +71,172 @@ You have now completed the first step in creating the WCS service instance.
 ![Architecture Overview](/images/wk2-wcs-manage-launch.png)
 	2. This will open another browser window and you should now be on the Watson Conversation Workspace page
 ![Architecture Overview](/images/wk2-wcs-workspaces.png)
-	3. You are going to create a new workspace. Click on the "Create a new workspace" tile.
+	3. You are going to create a new workspace. Click on the ***"Create a new workspace"*** tile.
 	4. Enter a workspace name i.e. STSA-WK2-xxx (where xxx is your team number).
 	![Architecture Overview](/images/wk2-wcs-workspaces-create-popup.png)
 	5. You are now ready to create some **Intents**. Click on the Intents link. You should now see the following:
 	![Architecture Overview](/images/wks-wcs-workspaces-create-intents.png)
-	Click the "Create New" button in the middle of the page. You should now see the following:
+	Click the **"Create New"** button in the middle of the page. You should now see the following:
 	![Architecture Overview](/images/wk2-wcs-workspaces-intents-add.png)
-		1. Add a new Intent name of **Information**. You then need to provide some examples. Look at the image below and copy the samples provided.
+		1. Add a new Intent name of **Information**. You then need to provide some examples. Copy the samples provided and look at the image below.
+		
+		```
+		What is the temperature
+		Can you explain
+		What is a
+		I need information about
+		What is the current temperature
+		I need some information on the temperature
+		Can you tell me the temperature
+		I need to know the temperature
+
+		```
+		It should look like the following:
 		![Architecture Overview](/images/wk2-wcs-workspaces-intents-examples.png)
-		2. Add another intent, by clicking "Create new" button. Use the new Intent name of **Greeting**. Look at the image below and add the examples.
+		Click **Done** in the upper right corner when finished.
+		![Architecture Overview](/images/wk2-wcs-workspaces-intents-done.png)
+		
+		2. Add another intent, by clicking "Create new" button. Use the new Intent name of **Greeting**. Copy the samples and look at the image below.
+		
+		```
+		good evening
+		Hello
+		Hi
+		Howdy
+		Good morning
+		Good afternoon
+		Yo Yo Yo
+		Sup dude
+		```
 		![Architecture Overview](/images/wk2-wcs-workspaces-intents-greeting.png)
+		Click **Done** when finished.
+		
 		3. Add another intent **GoodBye**. Add the following examples also.
+		
+		```
+		good-bye
+		see you later
+		talk to you later
+		goodbye
+		later
+		```
 		![Architecture Overview](/images/wk2-wcs-workspaces-intents-goodbye.png)
+		Click **Done** when finished.
+		
 		4. Add one last intent **ChangeColor** with the following examples:
+		
+		```
+		I need to change the color of the sensor
+		Please change the sensor color
+		Change the color of the sensor
+		make the sensors color green
+		change the sensor color to green
+
+		```
+		
 		![Architecture Overview](/images/wk2-wcs-workspaces-intents-changecolor.png)
-		You have now finished creating all of the intents.
+		Click **Done** when finished.
+		
+		You have now finished creating all of the intents. (Nice Job!)
 		
 	6. Next we want to create some **Entities**. Click on the "Entities" link at the top of the page.
 	![Architecture Overview](/images/wk2-wcs-workspaces-entities-add.png)
-	Click the "Create New" button. 
-		1. Type "Temperature" as the new Entity name.
+	Click the **"Create New"** button. 
+		1. Type **"Temperature"** as the new Entity name.
 		![Architecture Overview](/images/wk2-wcs-workspaces-entities-examples.png)
 		Now notice, you need to add examples of new "Temperature" entities. So add **"Current Temperature"** as a new entity 
 		but also you need to provide some synonyms to help identify variations of the entity value. Now add **"Temperature now"** and **"Current Temp"** 
 		as synonyms. You now need to add **"Average Temperature"** and **"Temperature"** with the corresponding
-		 synonyms, as shown in the image.
-		2. Create another entity called "degree" also add the associated synonyms.
+		 synonyms, as shown in the image above. After you are finished with each set of synonyms click the **Plus** icon to add them.
+		
+		```
+		Current temperature		current temp	temperature now
+		Average temperature		avg temp		avg temperature
+		Temperature 			Temp
+		
+		```
+		Click **Done** when finished.
+		
+		2. Create another entity called **"degree"** also add the associated synonyms.
+		
+		```
+		Celsius			celcius		degrees in c	degrees C
+		Fahrenheit		Degrees F	degrees in f
+		
+
+		```
 		![Architecture Overview](/images/wk2-wcs-workspaces-entities-degree.png)
+		Click **Done** when finished.
+		
 		3. Add one last entity called **Colors** and the associated values.
+		
+		```
+		Yellow
+		Blue
+		White
+		Green
+		Red
+		```
+		
 		![Architecture Overview](/images/wk2-wcs-workspaces-entities-colors.png)
+		Click **Done** when finished.
+		
+		Great you now completed the adding of Entities. (Well done!).
 		
 	7. We are now ready to create a dialog. Click on the Dialog link at the top of the page.
 	![Architecture Overview](/images/wk2-wcs-workspaces-dialog-add.png)
 	Click the "Create" button to start to create a dialog. You should now see the following:
 	![Architecture Overview](/images/wk2-wcs-workspaces-dialog-start.png)
+	
 	What you see are two "Dialog Nodes". The first is the standard "Welcome" message and the other
-	is a catch-all "Anything else" . Remember the way a conversation dialog works, by scanning from the top of the tree
+	is a catch-all "Anything else" . Remember the way a conversation dialog works is by scanning from the top of the tree
 	and evaluating every node until a condition is met that satisfies the question being asked. So when the conversation starts
 	WCS will respond with the "Welcome" Node. If you click on the "Welcome" node you will see that the standard Watson response
 	is "Hello. How can I help you?"
-	8. We now want to create our own node, based on the "Intents" we create earlier. To add a new node in the tree, below the "Welcome"
-	node, click on the "Plus" icon, below the "Welcome" node.
+	![Architecture Overview](/images/wk2-wcs-workspaces-dialog-click-welcome.png)
+	
+	8. We now want to create our own node, based on the "Intents" we create earlier. To add a new node in the tree, click on the "Welcome"
+	node,  and then click on the "Add Node" icon.
 	![Architecture Overview](/images/wk2-wcs-workspace-dialog-node-add.png)
 	You should now see the following:
 	![Architecture Overview](/images/wk2-wcs-workspaces-dialog-add-input.png)
 		1. We are going to add some very simple nodes. Type **Greeting** as the name of the node. The trigger should be **"#Greeting"**. The Response condition should be set to "True" and you can provide any response text you like. It should look similar to the following:
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-greeting.png)
-		1. Again create another root node by clicking the "Plus Sign" under the "Greeting" node. This will add another node. This nodes values are as follows:
+		1. Again create another root node by clicking on the "Greeting" node and then clicking "Add node". This will add another node. This nodes values are as follows:
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-goodbye.png)
 		1. Create a new node under the "Goodbye" node, called **Color Change** with the following information:
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-colorchange.png)
-		Take special note of the extra information in the first response. Make sure to copy it properly. 
-		`<? entities.Colors.literal ?>` is an expression langage snippet of code. If you look at the information in the node, the intent is to change color and the first condition for a response is "@Colors", which
-		signals to Watson, if a known color is provided in the user's input then use that color in the response. If an unknown color is typed (i.e. Violet) in the user's input the processing will hit the "True" condition. This is because "Violet" is not in our "@Color" entity definition.
+		
+		In this node, your response needs to have a condition set, prior to responding. This is done by clicking on the **Add response condidtion** link.
+		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-colorchange-response-condition.png)
+		
+		
+		Take special note of the extra information in the first response. Make sure to copy it properly.   
+		 
+		`I just changed the color to <? entities.Colors.literal ?>`   
+		
+		This is an expression langage snippet of code. If you look at the information in the node, the intent is to change color and the first condition for a response is "@Colors", which
+		signals to Watson, if a known color is provided in the user's input then use that color in the response.   
+		Now click on the **Add another response** to add another condition. Make the second resposes response condition **True**.
+		If an unknown color is typed (i.e. Violet) in the user's input the processing will hit the "True" condition. This is because "Violet" is not in our "@Color" entity definition.
+		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-colorchange-response-condition-true.png)
+		
+		
+		
 		1. Create a node under "Color Change" called **WhatElse**, with the following information:
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-whatelse.png)
 		
 		1. We are now on the last node we are going to create. Insert this node between the "Goodbye" and "Color Change" node. This is done by clicking on the 
-		goodbye node and then clicking the "Plus Sign" underneath it. 
+		goodbye node and then clicking the **"Add Node"**. 
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-aftergoodbye.png)
 		
-		2. Enter "Information" as the name of the node. In the Trigger field type the word "Information" you will see a type ahead pop up. Select the "#Information" entry. **Do not provide any responses.**
+		2. Enter **"Information"** as the name of the node. In the "If bot recognizes" type the word "Information" you will see a type ahead pop up. Select the "#Information" entry. **Do not provide any responses.**
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information.png)
 		4. Click the large green X at the top to close the dialog editor.
-		5. Now you want to create a sub-dialog. This time click on the "Plus Sign" to the right of the "Information" Dialog node.
+		5. Now you want to create a sub-dialog. This time make sure the "Information" node is selected and then click on the "Add child node" button.
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-plussign.png)
 		6. Enter "Temperature" as the name of the node.
-		7. In the Trigger field enter "@Temperature:(Current Temperature)". This is the entity defined earlier.
+		7. In the "If bot recognizes" field enter "@Temperature:(Current Temperature)". This is the entity defined earlier.
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-temperature.png)
 		8. In the Response section, for the first response, add a response condition. Type "@degree:Celsius" in the response condition field.
 		Then add the Watson response of "The current temperature in celsius is"
@@ -148,28 +246,37 @@ You have now completed the first step in creating the WCS service instance.
 		Your completed node should look the like the following:
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature.png)
 		Close the node editor, we have one last sub-node to create.
-		11. Under the "Temperature" node, create a new node. Call it **Unknown** Add the information like below:
+		11. Under the "Temperature" node, create a new node. The is done by clicking on the "Temperature" node and then clicking on **Add node** button. 
+		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-addnode.png)   
+		
+		Call it **Unknown** Add the information like below:
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-unknown.png)
-		12. The next step is to go back to the "Information" node, by clicking on the node itself. You need to edit the node, so click on the green pencil icon.
-		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-plussign.png)
-		Once the node editor is open, look at bottom right corner. There is a button "Wait for user input". Click on the button, we want to change the behavior of the "Information" node, from waiting for user input to "Jump to" a node.
-		Click the **Jump To** option. The screen will change, select the "Temperature" node, which is a sub-node of "Information". 
-		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-jump.png)
-		You will then see an option for "Go to condition" and "Go to response". Select **"Go to condition"** 
-		"Your screen should look like the following:
-		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-jump-condition.png)
-		13. Next we want to select the green pencil on the "Temperature" node. Like with the "Information" node, select the "Wait for user input" button and click **Jump to**.
-		Then select the **"WhatElse"** node. This time select the "Go to response" option. The sub-flow should now look like the following:
+		
+		12. The next step is to go back to the "Information" node, by clicking on the node itself. Next click on the **Three green buttons** This will open a small menu like the following:   
+		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-submenu.png)
+		
+		Click on the **Jump to** menu item and then click on the **Temperature** node. You should now see the following:   
+		
+		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-temperature-submenu.png)
+		
+		Click on the **If Bot recognized condition** menu item. You screen should now look like the following:   
+		
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-temperature-jump.png)
-		13. Next we want to select the green pencil on the "Temperature" node. Like with the "Information" node, select the "Wait for user input" button and click **Jump to**.
-		Then select the **"WhatElse"** node. This time select the "Go to response" option. The sub-flow should now look like the following:
-		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-temperature-jump.png)
-		14. Click the three bubbles in the upper right on the Temperature node by the responses
+		
+		13. Next we want to select the three circles on the "Temperature" node. Like with the "Information" node, select the  **Jump to** menu item.
+		Then select the **"WhatElse"** node. This time select the **"Respond"** option. The sub-flow should now look like the following:
+		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-temperature-jump-respond.png)
+		
+		13. Next we want to select the three circles on the "Color Change" node. Like with the "Temperature" node, select the  **Jump to** menu item.
+		Then select the **"WhatElse"** node. This time select the **"Respond"** option. The sub-flow should now look like the following:
+		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-colorchange-jump.png)
+		
+		14. Go back to the "Information" node and click on it to open the node editor. Click the three bubbles in the upper right on the Temperature node by the responses
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json.png)
-		Then click on the **JSON** menu item.
+		Then click on the **Open JSON Editor** menu item.
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json-pulldown.png)
 			1. We are going to add a single line of code to the JSON. The purpose of this code, is to send a signal to the NodeRed application that some special processing needs to occur.
-			So for the response to the **degree:Celsius** entity needs to have a new attribute on the JSON object. Type **"action": "CurrentTempCelsius"** make sure you put the "semicolon" right after the curly bracket, but before the new code you just added.
+			So for the JSON response to the **degree:Celsius** entity we need to have a new attribute on the JSON object. Type **"action": "CurrentTempCelsius"** make sure you put the "semicolon" right after the curly bracket, but before the new code you just added.
 			![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json-celsius.png)
 			2. You now need to do the same thing for the each of the other responses on the temperature node. 
 			For the **degree:Fahrenheit** response add **"action": "CurrentTempFahrenheit"**
