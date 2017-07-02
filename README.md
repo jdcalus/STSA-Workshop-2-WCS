@@ -176,6 +176,7 @@ You have now completed the first step in creating the WCS service instance.
 		White
 		Green
 		Red
+		Black	off
 		```
 		
 		![Architecture Overview](/images/wk2-wcs-workspaces-entities-colors.png)
@@ -286,7 +287,8 @@ You have now completed the first step in creating the WCS service instance.
 		15. The last step is to update the **ChangeColor** dialog node, with a similar action command. but this time set the command value to **"action":"changeColor"**
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-changecolor-json.png)
 		We are now finished with the entire Dialog. Congratulations. We will be coming back here to make a couple of minor updates. Now is time to test your code.
-	9. Deploy the NodeRed Flow . What might become obvious is that the responses from WCS are static. There is nothing personalized in the responses.
+## NodeRed Flow
+	What might become obvious is that the responses from WCS are static. There is nothing personalized in the responses.
 	Because of this we need to add a layer in front of WCS to take the responses and make them personalized. We are going to use NodeRed, like we did for the IoT lab.
 	Below are the steps needed for adding a new flow to your existing **BlueMix NodeRed** application.
 		1. Open your browser and go to the BlubMix NodeRed URL. It should be something like STSAWorkshops-xx.mybluemix.net. You can also get to it from your BlueMix Dashboard.
