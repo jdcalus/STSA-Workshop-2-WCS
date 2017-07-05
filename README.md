@@ -287,85 +287,88 @@ You have now completed the first step in creating the WCS service instance.
 		15. The last step is to update the **ChangeColor** dialog node, with a similar action command. but this time set the command value to **"action":"changeColor"**
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-changecolor-json.png)
 		We are now finished with the entire Dialog. Congratulations. We will be coming back here to make a couple of minor updates. Now is time to test your code.
-## NodeRed Flow
+
+	## NodeRed Flow
 	What might become obvious is that the responses from WCS are static. There is nothing personalized in the responses.
 	Because of this we need to add a layer in front of WCS to take the responses and make them personalized. We are going to use NodeRed, like we did for the IoT lab.
 	Below are the steps needed for adding a new flow to your existing **BlueMix NodeRed** application.
-		1. Open your browser and go to the BlubMix NodeRed URL. It should be something like STSAWorkshops-xx.mybluemix.net. You can also get to it from your BlueMix Dashboard.
-		2. Login to your NodeRed Editor
-		![Architecture Overview](/images/wk2-nodered-logon.png)
-		3. You should now see something like the following, which is your flow for IoT
-		![Iot Flow](/images/wk2-nodered-flow-iot.png)
-		4. Go to the following URL https://github.com/jdcalus/STSA-Workshop-2-WCS 
-		You should see something similar to the following:
-		![Iot Flow](/images/wk2-github-home.png)
-		5. Click on the wk2-wcs-flow.json link. This will take you to the NodeRed flow json file which has a predeveloped flow for talking to WCS. You should now see:
-		![Iot Flow](/images/wk2-github-flowjson.png)
-		6. Highlight all of the json text and copy it to your clipboard. (ctrl+c on your keyboard).
-		7. Go back to your NodeRed editor and in the upper right corner is the cake layer icon, click on it. Then click import and then click clipboard
-		![Iot Flow](/images/wk2-nodered-import.png)
-		8. You should now see the following dialog window:
-		![Iot Flow](/images/wk2-nodered-import-paste.png)
-		click in the center of the dialog and paste the information from your clipboard. (ctrl+v). Make sure the **new flow** button is pressed before you import.
-		Your screen should now look something like the following, which a new tab called **WCS Flow**
-		![Iot Flow](/images/wk2-nodered-flow-wcs.png)
-		9. Now we need to update a couple of the nodes, with information that was provided earlier in IoT Workshop.
-			1. Make sure you have the credentials information from your DashDB service. This can be access from your BlueMix dashboard, by clicking on the service:
-			![Iot Flow](/images/wk2-bluemix-dashboard-dashdb.png)
-			You should see the manage page for that instance of the dashDB service
-			![Iot Flow](/images/wk2-bluemix-dashdb-manage.png)
-			Now click on the Service Credentials link on the left side. Once the page loads, there is an option for **View Credentials**.  You will need to copy the **HostName, Username and Password** in the next step.
-			![Iot Flow](/images/wk2-bluemix-dashdb-credentials.png)
-			2. Now go back to NodeRed and make sure you are in the WCS flow.
-			Click on the Current Temp node. This is a DashDB node, so we need to make sure the setting are configured properly. You should see something like:
-			![Iot Flow](/images/wk2-nodered-flow-wcs-dashdb-config.png)   
-			If you see the "Server" information from the IoT lab. Select it. If you don't see an option for the "Server" information from the IoT Lab, you will need to add the information.
-			Click on the pencil icon to set up the connection information. You should see something like
-			![Iot Flow](/images/wk2-nodered-flow-wcs-dashdb-blank-security.png)
-			Once you fill in the values it should look similar to:
-			![Iot Flow](/images/wk2-nodered-flow-wcs-dashdb-security.png)
-			Click the **update** button then click on the **Done** button. Your dashDB node should now have the proper information to connect to the service instance.
-			3. Now double click on the **IoT Change Color** node.
-			![Iot Flow](/images/wk2-nodered-flow-wcs-iotdb.png)
-			We need to make sure the connection information is correct. Like from workshop 1, enter the appropriate values.
-			4. The final step is to double click on the **STSA-CONV** node. 
-			![Iot Flow](/images/wk2-nodered-flow-wcs-iotdb.png)
-			This is the Watson Conversation node, that connects to the conversation you just created above.
-			![Iot Flow](/images/wk2-nodered-flow-wcs-iotdb.png)
-			Provide the **Username, password and Workspace** values from above.
-			Click **Done** when completed.
-			You are done updating the NodeRed Flows for WCS
-			Click the **DEPLOY** button at the top of the screen.
-			
-		10. The next step is to create a sample application that connects to your NodeRed flow. When you click on the button below, you will be taken to bluemix DevOps page. This will automatically create a new application for you, via the DevOps ToolChain. If you are not logged on to BlueMix you will need to logon.
-		[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/jdcalus/STSA-WCS-WebProxy.git)
+	
+	1. Open your browser and go to the BlubMix NodeRed URL. It should be something like STSAWorkshops-xx.mybluemix.net. You can also get to it from your BlueMix Dashboard.
+	2. Login to your NodeRed Editor
+	![Architecture Overview](/images/wk2-nodered-logon.png)
+	3. You should now see something like the following, which is your flow for IoT
+	![Iot Flow](/images/wk2-nodered-flow-iot.png)
+	4. Go to the following URL https://github.com/jdcalus/STSA-Workshop-2-WCS 
+	You should see something similar to the following:
+	![Iot Flow](/images/wk2-github-home.png)
+	5. Click on the wk2-wcs-flow.json link. This will take you to the NodeRed flow json file which has a predeveloped flow for talking to WCS. You should now see:
+	![Iot Flow](/images/wk2-github-flowjson.png)
+	6. Highlight all of the json text and copy it to your clipboard. (ctrl+c on your keyboard).
+	7. Go back to your NodeRed editor and in the upper right corner is the cake layer icon, click on it. Then click import and then click clipboard
+	![Iot Flow](/images/wk2-nodered-import.png)
+	8. You should now see the following dialog window:
+	![Iot Flow](/images/wk2-nodered-import-paste.png)
+	click in the center of the dialog and paste the information from your clipboard. (ctrl+v). Make sure the **new flow** button is pressed before you import.
+	Your screen should now look something like the following, which a new tab called **WCS Flow**
+	![Iot Flow](/images/wk2-nodered-flow-wcs.png)
+	9. Now we need to update a couple of the nodes, with information that was provided earlier in IoT Workshop.
+		1. Make sure you have the credentials information from your DashDB service. This can be access from your BlueMix dashboard, by clicking on the service:
+		![Iot Flow](/images/wk2-bluemix-dashboard-dashdb.png)
+		You should see the manage page for that instance of the dashDB service
+		![Iot Flow](/images/wk2-bluemix-dashdb-manage.png)
+		Now click on the Service Credentials link on the left side. Once the page loads, there is an option for **View Credentials**.  You will need to copy the **HostName, Username and Password** in the next step.
+		![Iot Flow](/images/wk2-bluemix-dashdb-credentials.png)
+		2. Now go back to NodeRed and make sure you are in the WCS flow.
+		Click on the Current Temp node. This is a DashDB node, so we need to make sure the setting are configured properly. You should see something like:
+		![Iot Flow](/images/wk2-nodered-flow-wcs-dashdb-config.png)   
+		If you see the "Server" information from the IoT lab. Select it. If you don't see an option for the "Server" information from the IoT Lab, you will need to add the information.
+		Click on the pencil icon to set up the connection information. You should see something like
+		![Iot Flow](/images/wk2-nodered-flow-wcs-dashdb-blank-security.png)
+		Once you fill in the values it should look similar to:
+		![Iot Flow](/images/wk2-nodered-flow-wcs-dashdb-security.png)
+		Click the **update** button then click on the **Done** button. Your dashDB node should now have the proper information to connect to the service instance.
+		3. Now double click on the **IoT Change Color** node.
+		![Iot Flow](/images/wk2-nodered-flow-wcs-iotdb.png)
+		We need to make sure the connection information is correct. Like from workshop 1, enter the appropriate values.
+		4. The final step is to double click on the **STSA-CONV** node. 
+		![Iot Flow](/images/wk2-nodered-flow-wcs-iotdb.png)
+		This is the Watson Conversation node, that connects to the conversation you just created above.
+		![Iot Flow](/images/wk2-nodered-flow-wcs-iotdb.png)
+		Provide the **Username, password and Workspace** values from above.
+		Click **Done** when completed.
+		You are done updating the NodeRed Flows for WCS
+		Click the **DEPLOY** button at the top of the screen.
 		
-		You will see a screen like the following:
-		![Iot Flow](/images/wk2-devops-autocreate.png)
-		Click the deploy button, after about 1 minute or less, your screen will change to something like the following:
-		![Iot Flow](/images/wk2-devops-toolchain-autocreate.png)
-		Click on the **Deliver** tile
-		![Iot Flow](/images/wk2-devops-toolchain-deliver-icon.png)
-		Then you should see something like the following:
-		![Iot Flow](/images/wk2-devops-toolchain-deliver-home.png)
-		Once the message in the deploy tile has changed to finished from Deploy running, click on the **Last Executed Results**
-		![Iot Flow](/images/wk2-devops-toolchain-deliver-deploy-tile.png)
-		This will take you to the newly created applications. Your screen should now look like:
-		![Iot Flow](/images/wk2-bluemix-wcs-webclient.png)
-		Click on the **Runtime** link on the left and your screen should change, then click on environment tab in the middle of the screen. It should look like the following:
-		![Iot Flow](/images/wk2-bluemix-wcs-webclient-runtime.png)
-		In the **CONVERSATION_URL** value change the "xxxxxx" to the hostname of your **NodeRed** application. This comes from the NodeRed url that where you are creating your NodeRed flow. So something like "STSAWorkshops-xx.mybluemix.net", do not include "/red/#	
-		Click the **Save** button. The application will restart.
-		Click on the **Visit App URL**. This is at the top of the page. You will get an error message. That is okay. You need to add **webclient** to the end of the browsers URL.
-		![Iot Flow](/images/wk2-bluemix-wcs-webclient-url.png)
-		Your screen should now look like the following:
-		![Iot Flow](/images/wk2-bluemix-wcs-webclient-webpage.png)
-		
-		11. You can now ask Watson questions about the temperature.
-			1. What is the current temperature in Celsius
-			2. What is the temperature
-			3. What is the current temperature in fahrenheit
-			4. Change the background color to blue
+	10. The next step is to create a sample application that connects to your NodeRed flow. When you click on the button below, you will be taken to bluemix DevOps page. This will automatically create a new application for you, via the DevOps ToolChain. If you are not logged on to BlueMix you will need to logon.
+	
+	[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/jdcalus/STSA-WCS-WebProxy.git)
+	
+	You will see a screen like the following:
+	![Iot Flow](/images/wk2-devops-autocreate.png)
+	Click the deploy button, after about 1 minute or less, your screen will change to something like the following:
+	![Iot Flow](/images/wk2-devops-toolchain-autocreate.png)
+	Click on the **Deliver** tile
+	![Iot Flow](/images/wk2-devops-toolchain-deliver-icon.png)
+	Then you should see something like the following:
+	![Iot Flow](/images/wk2-devops-toolchain-deliver-home.png)
+	Once the message in the deploy tile has changed to finished from Deploy running, click on the **Last Executed Results**
+	![Iot Flow](/images/wk2-devops-toolchain-deliver-deploy-tile.png)
+	This will take you to the newly created applications. Your screen should now look like:
+	![Iot Flow](/images/wk2-bluemix-wcs-webclient.png)
+	Click on the **Runtime** link on the left and your screen should change, then click on environment tab in the middle of the screen. It should look like the following:
+	![Iot Flow](/images/wk2-bluemix-wcs-webclient-runtime.png)
+	In the **CONVERSATION_URL** value change the "xxxxxx" to the hostname of your **NodeRed** application. This comes from the NodeRed url that where you are creating your NodeRed flow. So something like "STSAWorkshops-xx.mybluemix.net", do not include "/red/#	
+	Click the **Save** button. The application will restart.
+	Click on the **Visit App URL**. This is at the top of the page. You will get an error message. That is okay. You need to add **webclient** to the end of the browsers URL.
+	![Iot Flow](/images/wk2-bluemix-wcs-webclient-url.png)
+	Your screen should now look like the following:
+	![Iot Flow](/images/wk2-bluemix-wcs-webclient-webpage.png)
+	
+	11. You can now ask Watson questions about the temperature.
+		1. What is the current temperature in Celsius
+		2. What is the temperature
+		3. What is the current temperature in fahrenheit
+		4. Change the background color to blue
 
 ### This concludes the Workshop 2
 	
