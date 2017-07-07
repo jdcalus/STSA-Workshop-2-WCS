@@ -1,29 +1,27 @@
 [
     {
-        "id": "409a1f5a.7f033",
-        "type": "tab",
-        "label": "WCS Flow"
-    },
-    {
-        "id": "6be053b1.cbf5c4",
+        "id": "68f0596b.99a518",
         "type": "watson-conversation-v1",
-        "z": "409a1f5a.7f033",
+        "z": "2c9d0264.e8b39e",
         "name": "STSA-CONV",
-        "workspaceid": "7bcaf7ff-2a7d-4a41-a58b-b4958275a943",
+        "workspaceid": "79068566-5633-4cf3-8347-3853c36d8a1a",
         "multiuser": false,
         "context": true,
+        "default-endpoint": false,
+        "service-endpoint": "",
         "x": 684.5,
         "y": 201,
         "wires": [
             [
-                "a4222da6.668e38"
+                "11256976.259137",
+                "1d88dc8d.d44833"
             ]
         ]
     },
     {
-        "id": "1115834a.941be5",
+        "id": "58a44cda.2251d4",
         "type": "http in",
-        "z": "409a1f5a.7f033",
+        "z": "2c9d0264.e8b39e",
         "name": "conv-api",
         "url": "/v1/workspaces/voiceproxy/message",
         "method": "post",
@@ -32,23 +30,23 @@
         "y": 200,
         "wires": [
             [
-                "c4ab6490.df707"
+                "52c4dac1.a50124"
             ]
         ]
     },
     {
-        "id": "e84ab0e3.297978",
+        "id": "c00b7863.1cae28",
         "type": "http response",
-        "z": "409a1f5a.7f033",
+        "z": "2c9d0264.e8b39e",
         "name": "",
         "x": 1305.5,
         "y": 555,
         "wires": []
     },
     {
-        "id": "c4ab6490.df707",
+        "id": "52c4dac1.a50124",
         "type": "function",
-        "z": "409a1f5a.7f033",
+        "z": "2c9d0264.e8b39e",
         "name": "conv-format",
         "func": "if(msg.payload.input){\n    if(msg.payload.input.text){\n        msg.payload = msg.payload.input.text;\n        \n    }else{\n        msg.payload = \"Hi\";\n    }\n}\nelse{\n    msg.payload = \"Hi\";\n}\nreturn msg;",
         "outputs": 1,
@@ -57,14 +55,14 @@
         "y": 201,
         "wires": [
             [
-                "6be053b1.cbf5c4"
+                "68f0596b.99a518"
             ]
         ]
     },
     {
-        "id": "9d161fd1.5172f",
+        "id": "c146a720.906178",
         "type": "switch",
-        "z": "409a1f5a.7f033",
+        "z": "2c9d0264.e8b39e",
         "name": "Conversation Actions",
         "property": "convdata.output.action",
         "propertyType": "msg",
@@ -81,7 +79,7 @@
             },
             {
                 "t": "eq",
-                "v": "changeColorRed",
+                "v": "changeColor",
                 "vt": "str"
             },
             {
@@ -94,24 +92,24 @@
         "y": 423,
         "wires": [
             [
-                "898687c.4510bf8"
+                "bdaf3133.64be2"
             ],
             [
-                "edef71d6.03ce2"
+                "742c7b40.6b1f64"
             ],
             [
-                "222e54e2.838d24",
-                "e84ab0e3.297978"
+                "1a7c8692.109039",
+                "c00b7863.1cae28"
             ],
             [
-                "e84ab0e3.297978"
+                "c00b7863.1cae28"
             ]
         ]
     },
     {
-        "id": "bd1c968f.65cbc8",
+        "id": "4afefa43.9bd194",
         "type": "function",
-        "z": "409a1f5a.7f033",
+        "z": "2c9d0264.e8b39e",
         "name": "CurrentTempCelsius",
         "func": "txt = msg.convdata.output.text[0];\ntemp = msg.payload.TEMPERATURE;\nmsg.payload = msg.convdata;\nmsg.payload.output.text[0] =  txt + \" \" + temp;\nreturn msg;",
         "outputs": 1,
@@ -120,14 +118,14 @@
         "y": 341,
         "wires": [
             [
-                "e84ab0e3.297978"
+                "c00b7863.1cae28"
             ]
         ]
     },
     {
-        "id": "c054b5af.a614d",
+        "id": "743e4232.d9601c",
         "type": "function",
-        "z": "409a1f5a.7f033",
+        "z": "2c9d0264.e8b39e",
         "name": "CurrentTempFahrenheit",
         "func": "txt = msg.convdata.output.text[0];\ntemp = msg.payload.TEMPERATURE;\ntempf = ((parseInt(temp, 10)*9)/5)+32;\nmsg.payload = msg.convdata;\nmsg.payload.output.text[0] =  txt + \" \" + tempf;\nreturn msg;",
         "outputs": 1,
@@ -136,16 +134,16 @@
         "y": 384,
         "wires": [
             [
-                "e84ab0e3.297978"
+                "c00b7863.1cae28"
             ]
         ]
     },
     {
-        "id": "898687c.4510bf8",
+        "id": "bdaf3133.64be2",
         "type": "dashDB in",
-        "z": "409a1f5a.7f033",
-        "dashDB": "d62eb89e.14e69",
-        "service": "_ext_",
+        "z": "2c9d0264.e8b39e",
+        "dashDB": "6469adc1.e30534",
+        "service": "jdcalus-stsa-dashdb",
         "query": "SELECT temperature, timesent FROM sensedata order by timesent desc fetch first 1 row only;",
         "params": "",
         "name": "Current Temp",
@@ -153,14 +151,14 @@
         "y": 340,
         "wires": [
             [
-                "bd1c968f.65cbc8"
+                "4afefa43.9bd194"
             ]
         ]
     },
     {
-        "id": "a4222da6.668e38",
+        "id": "11256976.259137",
         "type": "function",
-        "z": "409a1f5a.7f033",
+        "z": "2c9d0264.e8b39e",
         "name": "after_WCS",
         "func": "conv_data = {};\nconv_data = msg.payload;\nmsg.convdata = conv_data;\nreturn msg;",
         "outputs": 1,
@@ -169,16 +167,16 @@
         "y": 201,
         "wires": [
             [
-                "9d161fd1.5172f"
+                "c146a720.906178"
             ]
         ]
     },
     {
-        "id": "edef71d6.03ce2",
+        "id": "742c7b40.6b1f64",
         "type": "dashDB in",
-        "z": "409a1f5a.7f033",
-        "dashDB": "d62eb89e.14e69",
-        "service": "_ext_",
+        "z": "2c9d0264.e8b39e",
+        "dashDB": "6469adc1.e30534",
+        "service": "jdcalus-stsa-dashdb",
         "query": "SELECT temperature, timesent FROM sensedata order by timesent desc fetch first 1 row only;",
         "params": "",
         "name": "Current Temp",
@@ -186,14 +184,14 @@
         "y": 385,
         "wires": [
             [
-                "c054b5af.a614d"
+                "743e4232.d9601c"
             ]
         ]
     },
     {
-        "id": "222e54e2.838d24",
+        "id": "1a7c8692.109039",
         "type": "function",
-        "z": "409a1f5a.7f033",
+        "z": "2c9d0264.e8b39e",
         "name": "ChangeIoTColor",
         "func": "if(msg.payload.entities){\n    color = msg.payload.entities[0].value;\n}else{\n    color = msg.payload;\n}\n\nmsg.payload={d:{color:'blue',background: color ,message:' '}}\nreturn msg;",
         "outputs": 1,
@@ -202,18 +200,19 @@
         "y": 431.75,
         "wires": [
             [
-                "47b014a3.8af9ec"
+                "f1f97093.9b8cf",
+                "617f15e.b92daec"
             ]
         ]
     },
     {
-        "id": "47b014a3.8af9ec",
+        "id": "f1f97093.9b8cf",
         "type": "ibmiot out",
-        "z": "409a1f5a.7f033",
-        "authentication": "apiKey",
-        "apiKey": "1ed9ef64.505b61",
+        "z": "2c9d0264.e8b39e",
+        "authentication": "boundService",
+        "apiKey": "8451725e.963f2",
         "outputType": "cmd",
-        "deviceId": "SenseHat-01",
+        "deviceId": "sensehat-jdcalus",
         "deviceType": "SenseHat",
         "eventCommandType": "message",
         "format": "json",
@@ -226,9 +225,9 @@
         "wires": []
     },
     {
-        "id": "462bec0f.bc7f94",
+        "id": "d2f10c0b.e256f",
         "type": "comment",
-        "z": "409a1f5a.7f033",
+        "z": "2c9d0264.e8b39e",
         "name": "API endpoint for WCS",
         "info": "",
         "x": 268.5,
@@ -236,7 +235,31 @@
         "wires": []
     },
     {
-        "id": "d62eb89e.14e69",
+        "id": "1d88dc8d.d44833",
+        "type": "link out",
+        "z": "2c9d0264.e8b39e",
+        "name": "",
+        "links": [
+            "96c62d03.4dd3"
+        ],
+        "x": 800.5,
+        "y": 109,
+        "wires": []
+    },
+    {
+        "id": "617f15e.b92daec",
+        "type": "link out",
+        "z": "2c9d0264.e8b39e",
+        "name": "WCS Color Link",
+        "links": [
+            "8ad94e60.55e21"
+        ],
+        "x": 865.5,
+        "y": 547,
+        "wires": []
+    },
+    {
+        "id": "6469adc1.e30534",
         "type": "dashDB",
         "z": "",
         "hostname": "dashdb-entry-yp-dal09-08.services.dal.bluemix.net",
@@ -245,7 +268,7 @@
         "name": "DashDB-STSA"
     },
     {
-        "id": "1ed9ef64.505b61",
+        "id": "8451725e.963f2",
         "type": "ibmiot",
         "z": "",
         "name": "TinyPi",
