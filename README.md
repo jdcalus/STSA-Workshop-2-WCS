@@ -14,7 +14,7 @@ is commonly called a bot. The intent of this lab is to take the base work model 
 and extend the lab to leverage the WCS capabilities. We will enable through a dialog approach
 WCS interacting with the data from the IoT device, asking questions specific to the data that is
 captured. The lab will also allow for commands to be sent to the IoT device, directed from the
-response of the WCS dialog flow. Though the example is simple, it will provide you with a 
+response of the WCS dialog flow. Though the example is simple, it will provide you with a
 solid understanding of the core pieces of WCS.
 
 ### Terminology
@@ -25,19 +25,19 @@ creating an application (i.e. Dialog) in WCS
 	It is common to think of intents as the verbs or actions that need to occur. An Example of
 	an Intent is "Tell me the temperature" or "I want to know the current temperature". In both
 	cases, though the sentences are different they both as asking WCS for temperature information.
-	It should be noted that WCS can only support a single Intent per interaction with WCS. So 
+	It should be noted that WCS can only support a single Intent per interaction with WCS. So
 	asking questions with multiple intents will produce unreliable ordering of answers to the question.
-	
+
 **Entities:** An entity is the object that intents use to help narrow the scope of the request.
 	It is common to think of entities as nouns or objects. The nice thing about entities, compared to
 	intents, is that you can have multiple entities per interaction. This is very helpful when trying
-	to narrow down the answers to a question. 
-	
-**Dialog:** The conversation that is created within WCS, is called a dialog. A dialog is 
+	to narrow down the answers to a question.
+
+**Dialog:** The conversation that is created within WCS, is called a dialog. A dialog is
 	composed of creating a flow between intents and entities. The combination of flows and
-	subFlows allows WCS to provide mult-layered conversation based on multiple interactions, 
-	instead of a single question and answer. 
-	
+	subFlows allows WCS to provide mult-layered conversation based on multiple interactions,
+	instead of a single question and answer.
+
 
 ## Project Repositories
 
@@ -63,7 +63,7 @@ Below are the steps for workshop 2
 ![Architecture Overview](/images/wk2-wcs-credentials.png) Your values for username and password will be different than shown.
 	8. Click the copy icon to copy the values to your clipboard. Paste the values in a text file for later use.
 	9. Go back to the manage page, by clicking on the manage link on the left side navigation. This will take you back to the manage page.
-	
+
 You have now completed the first step in creating the WCS service instance.
 
 2. Launch WCS tooling
@@ -79,7 +79,7 @@ You have now completed the first step in creating the WCS service instance.
 	Click the **"Create New"** button in the middle of the page. You should now see the following:
 	![Architecture Overview](/images/wk2-wcs-workspaces-intents-add.png)
 		1. Add a new Intent name of **Information**. You then need to provide some examples. Copy the samples provided and look at the image below.
-		
+
 		```
 		What is the temperature
 		Can you explain
@@ -95,9 +95,9 @@ You have now completed the first step in creating the WCS service instance.
 		![Architecture Overview](/images/wk2-wcs-workspaces-intents-examples.png)
 		Click **Done** in the upper right corner when finished.
 		![Architecture Overview](/images/wk2-wcs-workspaces-intents-done.png)
-		
+
 		2. Add another intent, by clicking "Create new" button. Use the new Intent name of **Greeting**. Copy the samples and look at the image below.
-		
+
 		```
 		good evening
 		Hello
@@ -110,9 +110,9 @@ You have now completed the first step in creating the WCS service instance.
 		```
 		![Architecture Overview](/images/wk2-wcs-workspaces-intents-greeting.png)
 		Click **Done** when finished.
-		
+
 		3. Add another intent **GoodBye**. Add the following examples also.
-		
+
 		```
 		good-bye
 		see you later
@@ -122,9 +122,9 @@ You have now completed the first step in creating the WCS service instance.
 		```
 		![Architecture Overview](/images/wk2-wcs-workspaces-intents-goodbye.png)
 		Click **Done** when finished.
-		
+
 		4. Add one last intent **ChangeColor** with the following examples:
-		
+
 		```
 		I need to change the color of the sensor
 		Please change the sensor color
@@ -133,43 +133,43 @@ You have now completed the first step in creating the WCS service instance.
 		change the sensor color to green
 
 		```
-		
+
 		![Architecture Overview](/images/wk2-wcs-workspaces-intents-changecolor.png)
 		Click **Done** when finished.
-		
+
 		You have now finished creating all of the intents. (Nice Job!)
-		
+
 	6. Next we want to create some **Entities**. Click on the "Entities" link at the top of the page.
 	![Architecture Overview](/images/wk2-wcs-workspaces-entities-add.png)
-	Click the **"Create New"** button. 
+	Click the **"Create New"** button.
 		1. Type **"Temperature"** as the new Entity name.
 		![Architecture Overview](/images/wk2-wcs-workspaces-entities-examples.png)
-		Now notice, you need to add examples of new "Temperature" entities. So add **"Current Temperature"** as a new entity 
-		but also you need to provide some synonyms to help identify variations of the entity value. Now add **"Temperature now"** and **"Current Temp"** 
+		Now notice, you need to add examples of new "Temperature" entities. So add **"Current Temperature"** as a new entity
+		but also you need to provide some synonyms to help identify variations of the entity value. Now add **"Temperature now"** and **"Current Temp"**
 		as synonyms. You now need to add **"Average Temperature"** and **"Temperature"** with the corresponding
 		 synonyms, as shown in the image above. After you are finished with each set of synonyms click the **Plus** icon to add them.
-		
+
 		```
 		Current temperature		current temp	temperature now
 		Average temperature		avg temp		avg temperature
 		Temperature 			Temp
-		
+
 		```
 		Click **Done** when finished.
-		
+
 		2. Create another entity called **"degree"** also add the associated synonyms.
-		
+
 		```
 		Celsius			celcius		degrees in c	degrees C
 		Fahrenheit		Degrees F	degrees in f
-		
+
 
 		```
 		![Architecture Overview](/images/wk2-wcs-workspaces-entities-degree.png)
 		Click **Done** when finished.
-		
+
 		3. Add one last entity called **Colors** and the associated values.
-		
+
 		```
 		Yellow
 		Blue
@@ -178,24 +178,24 @@ You have now completed the first step in creating the WCS service instance.
 		Red
 		Black	off
 		```
-		
+
 		![Architecture Overview](/images/wk2-wcs-workspaces-entities-colors.png)
 		Click **Done** when finished.
-		
+
 		Great you now completed the adding of Entities. (Well done!).
-		
+
 	7. We are now ready to create a dialog. Click on the Dialog link at the top of the page.
 	![Architecture Overview](/images/wk2-wcs-workspaces-dialog-add.png)
 	Click the "Create" button to start to create a dialog. You should now see the following:
 	![Architecture Overview](/images/wk2-wcs-workspaces-dialog-start.png)
-	
+
 	What you see are two "Dialog Nodes". The first is the standard "Welcome" message and the other
 	is a catch-all "Anything else" . Remember the way a conversation dialog works is by scanning from the top of the tree
 	and evaluating every node until a condition is met that satisfies the question being asked. So when the conversation starts
 	WCS will respond with the "Welcome" Node. If you click on the "Welcome" node you will see that the standard Watson response
 	is "Hello. How can I help you?"
 	![Architecture Overview](/images/wk2-wcs-workspaces-dialog-click-welcome.png)
-	
+
 	8. We now want to create our own node, based on the "Intents" we create earlier. To add a new node in the tree, click on the "Welcome"
 	node,  and then click on the "Add Node" icon.
 	![Architecture Overview](/images/wk2-wcs-workspace-dialog-node-add.png)
@@ -207,30 +207,30 @@ You have now completed the first step in creating the WCS service instance.
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-goodbye.png)
 		1. Create a new node under the "Goodbye" node, called **Color Change** with the following information:
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-colorchange.png)
-		
+
 		In this node, your response needs to have a condition set, prior to responding. This is done by clicking on the **Add response condidtion** link.
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-colorchange-response-condition.png)
-		
-		
+
+
 		Take special note of the extra information in the first response. Make sure to copy it properly.   
-		 
+
 		`I just changed the color to <? entities.Colors.literal ?>`   
-		
+
 		This is an expression langage snippet of code. If you look at the information in the node, the intent is to change color and the first condition for a response is "@Colors", which
 		signals to Watson, if a known color is provided in the user's input then use that color in the response.   
 		Now click on the **Add another response** to add another condition. Make the second resposes response condition **True**.
 		If an unknown color is typed (i.e. Violet) in the user's input the processing will hit the "True" condition. This is because "Violet" is not in our "@Color" entity definition.
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-colorchange-response-condition-true.png)
-		
-		
-		
+
+
+
 		1. Create a node under "Color Change" called **WhatElse**, with the following information:
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-whatelse.png)
-		
-		1. We are now on the last node we are going to create. Insert this node between the "Goodbye" and "Color Change" node. This is done by clicking on the 
-		goodbye node and then clicking the **"Add Node"**. 
+
+		1. We are now on the last node we are going to create. Insert this node between the "Goodbye" and "Color Change" node. This is done by clicking on the
+		goodbye node and then clicking the **"Add Node"**.
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-aftergoodbye.png)
-		
+
 		2. Enter **"Information"** as the name of the node. In the "If bot recognizes" type the word "Information" you will see a type ahead pop up. Select the "#Information" entry. **Do not provide any responses.**
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information.png)
 		4. Click the large green X at the top to close the dialog editor.
@@ -247,31 +247,31 @@ You have now completed the first step in creating the WCS service instance.
 		Your completed node should look the like the following:
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature.png)
 		Close the node editor, we have one last sub-node to create.
-		11. Under the "Temperature" node, create a new node. The is done by clicking on the "Temperature" node and then clicking on **Add node** button. 
+		11. Under the "Temperature" node, create a new node. The is done by clicking on the "Temperature" node and then clicking on **Add node** button.
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-addnode.png)   
-		
+
 		Call it **Unknown** Add the information like below:
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-unknown.png)
-		
+
 		12. The next step is to go back to the "Information" node, by clicking on the node itself. Next click on the **Three green buttons** This will open a small menu like the following:   
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-submenu.png)
-		
+
 		Click on the **Jump to** menu item and then click on the **Temperature** node. You should now see the following:   
-		
+
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-temperature-submenu.png)
-		
+
 		Click on the **If Bot recognized condition** menu item. You screen should now look like the following:   
-		
+
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-temperature-jump.png)
-		
+
 		13. Next we want to select the three circles on the "Temperature" node. Like with the "Information" node, select the  **Jump to** menu item.
 		Then select the **"WhatElse"** node. This time select the **"Respond"** option. The sub-flow should now look like the following:
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-temperature-jump-respond.png)
-		
+
 		13. Next we want to select the three circles on the "Color Change" node. Like with the "Temperature" node, select the  **Jump to** menu item.
 		Then select the **"WhatElse"** node. This time select the **"Respond"** option. The sub-flow should now look like the following:
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-colorchange-jump.png)
-		
+
 		14. Go back to the "Information" node and click on it to open the node editor. Click the three bubbles in the upper right on the Temperature node by the responses
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json.png)
 		Then click on the **Open JSON Editor** menu item.
@@ -279,10 +279,10 @@ You have now completed the first step in creating the WCS service instance.
 			1. We are going to add a single line of code to the JSON. The purpose of this code, is to send a signal to the NodeRed application that some special processing needs to occur.
 			So for the JSON response to the **degree:Celsius** entity we need to have a new attribute on the JSON object. Type **"action": "CurrentTempCelsius"** make sure you put the "comma" right after the curly bracket, but before the new code you just added.
 			![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json-celsius.png)
-			2. You now need to do the same thing for the each of the other responses on the temperature node. 
+			2. You now need to do the same thing for the each of the other responses on the temperature node.
 			For the **degree:Fahrenheit** response add **"action": "CurrentTempFahrenheit"**
 			![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json-fahrenheit.png)
-			3. Now do it for the **True** condition as well. We will have the default response be in fahrenheit so add **"action": "CurrentTempFahrenheit"** 
+			3. Now do it for the **True** condition as well. We will have the default response be in fahrenheit so add **"action": "CurrentTempFahrenheit"**
 			![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json-default.png)
 		15. The last step is to update the **ChangeColor** dialog node, with a similar action command. but this time set the command value to **"action":"changeColor"**
 		![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-changecolor-json.png)
@@ -292,13 +292,13 @@ You have now completed the first step in creating the WCS service instance.
 	What might become obvious is that the responses from WCS are static. There is nothing personalized in the responses.
 	Because of this we need to add a layer in front of WCS to take the responses and make them personalized. We are going to use NodeRed, like we did for the IoT lab.
 	Below are the steps needed for adding a new flow to your existing **BlueMix NodeRed** application.
-	
+
 	1. Open your browser and go to the BlubMix NodeRed URL. It should be something like STSAWorkshops-xx.mybluemix.net. You can also get to it from your BlueMix Dashboard.
 	2. Login to your NodeRed Editor
 	![Architecture Overview](/images/wk2-nodered-logon.png)
 	3. You should now see something like the following, which is your flow for IoT
 	![Iot Flow](/images/wk2-nodered-flow-iot.png)
-	4. Go to the following URL https://github.com/jdcalus/STSA-Workshop-2-WCS 
+	4. Go to the following URL https://github.com/jdcalus/STSA-Workshop-2-WCS
 	You should see something similar to the following:
 	![Iot Flow](/images/wk2-github-home.png)
 	5. Click on the wk2-wcs-flow.json link. This will take you to the NodeRed flow json file which has a predeveloped flow for talking to WCS. You should now see:
@@ -330,7 +330,7 @@ You have now completed the first step in creating the WCS service instance.
 		3. Now double click on the **IoT Change Color** node.
 		![Iot Flow](/images/wk2-nodered-flow-wcs-iotdb.png)
 		We need to make sure the connection information is correct. Like from workshop 1, enter the appropriate values.
-		4. The final step is to double click on the **STSA-CONV** node. 
+		4. The final step is to double click on the **STSA-CONV** node.
 		![Iot Flow](/images/wk2-nodered-flow-wcs-iotdb.png)
 		This is the Watson Conversation node, that connects to the conversation you just created above.
 		![Iot Flow](/images/wk2-nodered-flow-wcs-iotdb.png)
@@ -338,11 +338,13 @@ You have now completed the first step in creating the WCS service instance.
 		Click **Done** when completed.
 		You are done updating the NodeRed Flows for WCS
 		Click the **DEPLOY** button at the top of the screen.
-		
+
 	10. The next step is to create a sample application that connects to your NodeRed flow. When you click on the button below, you will be taken to bluemix DevOps page. This will automatically create a new application for you, via the DevOps ToolChain. If you are not logged on to BlueMix you will need to logon.
-	
+
+	Click the Deploy button below to provision the web client application.
+
 	[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/jdcalus/STSA-WCS-WebProxy.git)
-	
+
 	You will see a screen like the following:
 	![Iot Flow](/images/wk2-devops-autocreate.png)
 	Click the deploy button, after about 1 minute or less, your screen will change to something like the following:
@@ -357,13 +359,13 @@ You have now completed the first step in creating the WCS service instance.
 	![Iot Flow](/images/wk2-bluemix-wcs-webclient.png)
 	Click on the **Runtime** link on the left and your screen should change, then click on environment tab in the middle of the screen. It should look like the following:
 	![Iot Flow](/images/wk2-bluemix-wcs-webclient-runtime.png)
-	In the **CONVERSATION_URL** value change the "xxxxxx" to the hostname of your **NodeRed** application. This comes from the NodeRed url that where you are creating your NodeRed flow. So something like "STSAWorkshops-xx.mybluemix.net", do not include "/red/#	
+	In the **CONVERSATION_URL** value change the "xxxxxx" to the hostname of your **NodeRed** application. This comes from the NodeRed url that where you are creating your NodeRed flow. So something like "STSAWorkshops-xx.mybluemix.net", do not include "/red/#
 	Click the **Save** button. The application will restart.
 	Click on the **Visit App URL**. This is at the top of the page. You will get an error message. That is okay. You need to add **webclient** to the end of the browsers URL.
 	![Iot Flow](/images/wk2-bluemix-wcs-webclient-url.png)
 	Your screen should now look like the following:
 	![Iot Flow](/images/wk2-bluemix-wcs-webclient-webpage.png)
-	
+
 	11. You can now ask Watson questions about the temperature.
 		1. What is the current temperature in Celsius
 		2. What is the temperature
@@ -371,7 +373,7 @@ You have now completed the first step in creating the WCS service instance.
 		4. Change the background color to blue
 
 ### This concludes the Workshop 2
-	
+
 ## Toolchain Installation
 In the event you are not able to complete the workshop in enough time, we have provided a
 DevOps toolchain that will allow for you to quickly get a completed lab setup. Follow the
