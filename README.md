@@ -540,3 +540,6 @@ You can now ask Watson questions about the temperature.
 Nice Job you are now a Jedi Knight in Watson Conversation Service!
 
 ### Jedi Knights and Jedi Masters
+If you have time, you can start to add more Dialog Nodes to ask other questions and you can provide the appropriate responses. Play with the ordering of the nodes in the dialog tree. Create new child nodes and see how they react to the flow. Also you can always add new entities and intents and then create even more dialog nodes. It is really endless as to what you can do.
+
+If you have a hard time thinking of what else you can do, don't worry, in the Hybrid cloud and Blockchain labs you will have more opportunities to add more dialog nodes.
