@@ -418,7 +418,7 @@ Below are the steps needed for adding a new flow to your existing **BlueMix Node
 3. You should now see something like the following, which is your flow for IoT
 
 	![Iot Flow](/images/wk2-nodered-flow-iot.png)
-5. Click [WCS NodeRed Flow](https://github.com/jdcalus/STSA-Workshop-2-WCS/blob/master/wk2-wcs-workspace.json) link. This will take you to the NodeRed flow JSON file which has a pre-developed flow for talking to WCS. You should now see:
+5. Click [WCS NodeRed Flow](https://github.com/jdcalus/STSA-Workshop-2-WCS/blob/master/wk2-wcs-flow.json) link. This will take you to the NodeRed flow JSON file which has a pre-developed flow for talking to WCS. You should now see:
 
 	![Iot Flow](/images/wk2-github-flowjson-small.png)
 
