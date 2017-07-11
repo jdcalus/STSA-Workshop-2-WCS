@@ -210,7 +210,7 @@ Next we want to create some **Entities**. Click on the "Entities" link at the to
 Now notice, you need to add examples of new "Temperature" entities. So add **"Current Temperature"** as a new entity
 but also you need to provide some synonyms to help identify variations of the entity value. Now add **"Temperature now"** and **"Current Temp"**
 as synonyms. You now need to add **"Average Temperature"** and **"Temperature"** with the corresponding
- synonyms, as shown in the image above. After you are finished with each set of synonyms click the **Plus** icon to add them.
+ synonyms, as shown in the image above. When you add a synonym, hit the **Enter** key from your keyboard to add the next synonym. After you are finished with each set of synonyms click the **Plus** icon to add them.
 
 ```
 Current temperature		current temp	temperature now
@@ -218,6 +218,9 @@ Average temperature		avg temp		avg temperature
 Temperature 			Temp
 
 ```
+
+If for some reason you accidentally don't add one of the synonyms, you can add it after you click the done button. You just select the entity and add the appropriate synonyms.
+
 Click **Done** when finished.
 
 2. Create another entity called **"degree"** also add the associated synonyms.
@@ -266,7 +269,7 @@ is "Hello. How can I help you?"
 ![Architecture Overview](/images/wk2-wcs-workspaces-dialog-click-welcome.png)
 
 2. We now want to create our own node, based on the "Intents" we create earlier. To add a new node in the tree, click on the "Welcome"
-node,  and then click on the "Add Node" icon.
+node,  and then click on the **"Add Node"** icon.
 
 ![Architecture Overview](/images/wk2-wcs-workspace-dialog-node-add.png)
 
@@ -274,13 +277,17 @@ You should now see the following:
 
 ![Architecture Overview](/images/wk2-wcs-workspaces-dialog-add-input.png)
 
-3. Type **Greetings** as the name of the node. The trigger should be **"#Greetings"**. The Response condition should be set to "True" and you can provide any response text you like. It should look similar to the following:
+3. Type **Greetings** as the name of the node. If bot recognize should be **"#Greeting"**. The Response condition should be set to "True", by clicking on the **Add response condition** button. You can provide any response text you like. It should look similar to the following:
 
 ![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-greeting.png)
+
+You can click the **green X** in the upper right to close the dialog node editor.
 
 4. Again create another root node by clicking on the **"Greetings"** node and then clicking **"Add node"**. This will add another node. This node's values are as follows:
 
 ![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-goodbye.png)
+
+You can click the **green X** in the upper right to close the dialog node editor.
 
 5. Create a new node under the **"Goodbye"** node, called **Color Change** with the following information:
 
@@ -306,12 +313,16 @@ If an unknown color is typed (i.e. Violet) in the user's input the processing wi
 
 ![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-whatelse.png)
 
+At this point your Dialog Tree should look like the following
+
+![Architecture Overview](/images/wk2-conversation-dialog-tree.png)
+
 7. We are now on the last node we are going to create. Insert this node between the "Goodbye" and "Color Change" node. This is done by clicking on the
 goodbye node and then clicking the **"Add Node"**.
 
 ![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-aftergoodbye.png)
 
-8. Enter **"Information"** as the name of the node. In the "If bot recognizes" type the word "Information" you will see a type ahead pop up. Select the "#Information" entry. **Do not provide any responses.**
+8. Enter **Information** as the name of the node. In the "If bot recognizes" type the word "Information" you will see a type ahead pop up. Select the "#Information" entry. **Do not provide any responses.**
 
 ![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information.png)
 
@@ -320,7 +331,7 @@ goodbye node and then clicking the **"Add Node"**.
 
 ![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-plussign.png)
 
-11. Enter "Temperature" as the name of the node.
+11. Enter **Temperature** as the name of the node.
 12. In the "If bot recognizes" field enter "@Temperature:(Current Temperature)". This is the entity defined earlier.
 
 ![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-information-temperature.png)
@@ -366,7 +377,7 @@ Then select the **"WhatElse"** node. This time select the **"Respond"** option. 
 
 ![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-colorchange-jump.png)
 
-22. Go back to the "Information" node and click on it to open the node editor. Click the three bubbles in the upper right.
+22. Go back to the "Temperature" node and click on it to open the node editor. Click the three bubbles in the upper right, by degree celsius.
 
 ![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json.png)
 
@@ -387,11 +398,13 @@ For the **degree:Fahrenheit** response add **"action": "CurrentTempFahrenheit"**
 
 ![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-temperature-json-default.png)
 
+You can click the **green X** in the upper right to close the dialog node editor.
+
 26. The last step is to update the **ChangeColor** dialog node, with a similar action command. but this time set the command value to **"action":"changeColor"**
 
 ![Architecture Overview](/images/wk2-wcs-workspaces-dialog-node-changecolor-json.png)
 
-We are now finished with the entire Dialog. Congratulations. We will be coming back here to make a couple of minor updates. Now is time to test your code.
+We are now finished with the entire Dialog. Congratulations! Now is time to test your code.
 
 ## NodeRed Flow
 What might become obvious is that the responses from WCS are static. There is nothing personalized in the responses.
@@ -520,22 +533,33 @@ The next step is to create a sample application that connects to your NodeRed fl
 
 7. Click the **Save** button. The application will restart.
 
-8. Click on the **Visit App URL**. This is at the top of the page. **You will get an error message**. That is okay. You need to add **webclient** to the end of the browsers URL.
+8. Click on the **Visit App URL**. This is at the top of the page. **You will get an error message**.
 
-	![Iot Flow](/images/wk2-bluemix-wcs-webclient-url.png)
+![Iot Flow](/images/wk2-not-found.png)
 
-	Your screen should now look like the following:
+That is okay. You need to add **webclient** to the end of the browsers URL.
 
-	![Iot Flow](/images/wk2-bluemix-wcs-webclient-webpage.png)
+![Iot Flow](/images/wk2-bluemix-wcs-webclient-url.png)
+
+Your screen should now look like the following:
+
+![Iot Flow](/images/wk2-bluemix-wcs-webclient-webpage.png)
 
 
 ### Ask Watson questions
 You can now ask Watson questions about the temperature.
 
 1. What is the current temperature in Celsius
-2. What is the temperature
+2. What is the current temperature
 3. What is the current temperature in fahrenheit
 4. Change the background color to blue
+
+Ask Watson this question
+
+5. What is the temperature
+
+Did you get the response you were expecting? Why not? (hint: go look at the Temperature dialog node in Watson Conversation)
+
 
 Nice Job you are now a Jedi Knight in Watson Conversation Service!
 
